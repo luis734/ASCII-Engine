@@ -6,12 +6,15 @@
 #include "../engine/timer.h"
 
 #include "entity.h"
+#include "tilemap.h"
 
 Entity player = {
     5,
     5,
     'P'
 };
+
+TileMap map;
 
 void game_update() {
     if(key_down(KEY_W)) player.y--;
@@ -21,8 +24,8 @@ void game_update() {
 }
 
 void game_render() {
+    renderer_draw_map(&map);
     renderer_draw_entity(&player);
-    renderer_draw_text(1, 1, "ASCII ENGINE");
 }
 
 int main() {
@@ -32,6 +35,7 @@ int main() {
     };
     
     engine_init(screenConfig);
+    map = tilemap_create(20, 10);
 
     int running = 1;
 

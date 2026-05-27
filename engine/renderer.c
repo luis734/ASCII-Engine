@@ -21,7 +21,7 @@ void renderer_init(int width, int height) {
 void renderer_clear() {
     for(int y = 0; y < screenHeight; y++) {
         for(int x = 0; x < screenWidth; x++) {
-            screen[y][x] = '.';
+            screen[y][x] = ' ';
         }
     }
 }
@@ -51,6 +51,14 @@ void renderer_draw_entity(Entity* entity) {
         entity->y,
         entity->sprite
     );
+}
+
+void renderer_draw_map(TileMap* map) {
+    for(int y=0; y < map->height; y++) {
+        for(int x=0; x < map->width; x++) {
+            if (map->tiles[y][x] != ' ') renderer_draw_char(x, y, map->tiles[y][x]);
+        }
+    }
 }
 
 void renderer_draw_text(int x, int y, const char* text) {
