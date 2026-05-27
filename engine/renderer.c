@@ -5,11 +5,17 @@
 static int screenWidth;
 static int screenHeight;
 
-static char screen[100][100];
+static char** screen;
 
 void renderer_init(int width, int height) {
     screenWidth = width;
     screenHeight = height;
+
+    screen = malloc(sizeof(char*) * screenHeight);
+
+    for(int y=0; y < screenHeight; y++) {
+        screen[y] = malloc(sizeof(char) * screenWidth);
+    }
 }
 
 void renderer_clear() {
@@ -54,4 +60,12 @@ void renderer_draw_text(int x, int y, const char* text) {
         renderer_draw_char(x + i, y, text[i]);
         i++;
     }
+}
+
+void renderer_shutdown() {
+    for(int y = 0; y < screenHeight; y++) {
+        free(screen[y]);
+    }
+
+    free(screen);
 }

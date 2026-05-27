@@ -18,4 +18,6 @@ void renderer_draw_entity(Entity* entity);
 
 void renderer_present();
 
+void renderer_shutdown();
+
 #endif

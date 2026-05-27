@@ -33,8 +33,11 @@ int main() {
     
     engine_init(screenConfig);
 
-    while(1) {
+    int running = 1;
+
+    while(running) {
         input_update();
+        if (key_down(KEY_ESCAPE)) running = 0;
         game_update();
         renderer_clear();
         game_render();

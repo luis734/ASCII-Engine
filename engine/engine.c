@@ -24,5 +24,5 @@ void engine_stop() {
 }
 
 void engine_shutdown() {
-
+    renderer_shutdown();
 }
