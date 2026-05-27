@@ -5,8 +5,8 @@
 
 static int running = 1;
 
-void engine_init() {
-    renderer_init();
+void engine_init(EngineConfig config) {
+    renderer_init(config.width, config.height);
     timer_init();
 }
 

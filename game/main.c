@@ -26,7 +26,12 @@ void game_render() {
 }
 
 int main() {
-    engine_init();
+    EngineConfig screenConfig = {
+        20,
+        10
+    };
+    
+    engine_init(screenConfig);
 
     while(1) {
         input_update();
