@@ -22,6 +22,7 @@ void game_update() {
 
 void game_render() {
     renderer_draw_entity(&player);
+    renderer_draw_text(1, 1, "ASCII ENGINE");
 }
 
 int main() {

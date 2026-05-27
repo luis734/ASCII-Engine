@@ -12,6 +12,8 @@ void renderer_clear();
 
 void renderer_draw_char(int x, int y, char c);
 
+void renderer_draw_text(int x, int y, const char* text);
+
 void renderer_draw_entity(Entity* entity);
 
 void renderer_present();
