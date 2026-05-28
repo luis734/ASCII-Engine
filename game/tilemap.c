@@ -1,4 +1,6 @@
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include "tilemap.h"
 
 TileMap tilemap_create(int width, int height) {
@@ -30,6 +32,63 @@ TileMap tilemap_create(int width, int height) {
     return map;
 }
 
+TileMap tilemap_load(const char* path) {
+    FILE* file = fopen(path, "r");
+
+    if(file == NULL) {
+        printf("Error loading map: %s\n", path);
+
+        return tilemap_create(1, 1);
+    }
+
+    char line[256];
+
+    int width = 0;
+    int height = 0;
+
+    while(fgets(line, sizeof(line), file)) {
+        int len = strlen(line);
+
+        if(line[len - 1] == '\n') {
+            len--;
+        }
+
+        if(len > width) {
+            width = len;
+        }
+
+        height++;
+    }
+
+    rewind(file);
+
+    TileMap map = tilemap_create(width, height);
+
+    int y = 0;
+
+    while(fgets(line, sizeof(line), file)) {
+        int len = strlen(line);
+
+        if(line[len - 1] == '\n') {
+            line[len - 1] = '\0';
+            len--;
+        }
+
+        for(int x = 0; x < width; x++) {
+            if(x < len) {
+                map.tiles[y][x] = line[x];
+            }
+            else {
+                map.tiles[y][x] = ' ';
+            }
+        }
+        y++;
+    }
+
+    fclose(file);
+    return map;
+}
+
 int tilemap_is_walkable(TileMap* map, int x, int y) {
     if (x < 0 || x > map->width) {
         return 0;
@@ -44,4 +103,12 @@ int tilemap_is_walkable(TileMap* map, int x, int y) {
     } 
 
     return 1;
+}
+
+void tilemap_destroy(TileMap* map) {
+    for(int y = 0; y < map->height; y++) {
+        free(map->tiles[y]);
+    }
+
+    free(map->tiles);
 }
