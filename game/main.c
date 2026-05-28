@@ -38,14 +38,17 @@ void game_update() {
 }
 
 void game_render() {
+    renderer_set_viewport(1, 2);
+    renderer_draw_text(8, 0, "ASCII  DUNGEON");
     renderer_draw_map(&map);
     renderer_draw_entity(&player);
+    renderer_draw_text(1, 14, "HP: 100");
 }
 
 int main() {
     EngineConfig screenConfig = {
-        28,
-        11
+        30,
+        16
     };
     
     engine_init(screenConfig);

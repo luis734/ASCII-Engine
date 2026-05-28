@@ -21,6 +21,8 @@ void renderer_draw_map(TileMap* map);
 
 void renderer_present();
 
+void renderer_set_viewport(int x, int y);
+
 void renderer_shutdown();
 
 #endif

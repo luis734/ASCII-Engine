@@ -7,6 +7,9 @@ static int screenHeight;
 
 static char** screen;
 
+static int viewportX = 0;
+static int viewportY = 0;
+
 void renderer_init(int width, int height) {
     screenWidth = width;
     screenHeight = height;
@@ -45,10 +48,15 @@ void renderer_present() {
     }
 }
 
+void renderer_set_viewport(int x, int y) {
+    viewportX = x;
+    viewportY = y;
+}
+
 void renderer_draw_entity(Entity* entity) {
     renderer_draw_char(
-        entity->x,
-        entity->y,
+        viewportX + entity->x,
+        viewportY + entity->y,
         entity->sprite
     );
 }
@@ -56,7 +64,7 @@ void renderer_draw_entity(Entity* entity) {
 void renderer_draw_map(TileMap* map) {
     for(int y=0; y < map->height; y++) {
         for(int x=0; x < map->width; x++) {
-            if (map->tiles[y][x] != ' ') renderer_draw_char(x, y, map->tiles[y][x]);
+            if (map->tiles[y][x] != ' ') renderer_draw_char(viewportX + x, viewportY + y, map->tiles[y][x]);
         }
     }
 }
