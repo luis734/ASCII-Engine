@@ -54,11 +54,15 @@ void renderer_set_viewport(int x, int y) {
 }
 
 void renderer_draw_entity(Entity* entity) {
-    renderer_draw_char(
-        viewportX + entity->x,
-        viewportY + entity->y,
-        entity->sprite
-    );
+    for(int y=0; y < entity->height; y++) {
+        for(int x=0; x < entity->width; x++) {
+            renderer_draw_char(
+                viewportX + entity->x + x,
+                viewportY + entity->y + y,
+                entity->sprite
+            );
+        }
+    }
 }
 
 void renderer_draw_map(TileMap* map) {

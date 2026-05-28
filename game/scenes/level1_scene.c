@@ -8,7 +8,7 @@
 #include "../entity.h"
 
 static TileMap map;
-static Entity player = { 5, 5, 'P' };
+static Entity player = { 5, 5, 1, 1, 'P' };
 
 // PROTOTIPOS
 void level1_init();
