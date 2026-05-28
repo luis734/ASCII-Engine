@@ -2,17 +2,11 @@
 #define SCENE_H
 
 typedef struct {
-
+    void (*init)();
     void (*update)();
-
     void (*render)();
+    void (*destroy)();
 
 } Scene;
-
-void scene_set(Scene* scene);
-
-void scene_update();
-
-void scene_render();
 
 #endif
