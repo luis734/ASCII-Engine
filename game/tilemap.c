@@ -105,6 +105,18 @@ int tilemap_is_walkable(TileMap* map, int x, int y) {
     return 1;
 }
 
+int tilemap_entity_is_walkable(TileMap* map, Entity* entity, int newX, int newY) {
+    for(int y=0; y < entity->height; y++) {
+        for(int x=0; x < entity->width; x++) {
+            int tileX = newX + x;
+            int tileY = newY + y;
+
+            if (!tilemap_is_walkable(map, tileX, tileY)) return 0;
+        }
+    }
+    return 1;
+}
+
 void tilemap_destroy(TileMap* map) {
     for(int y = 0; y < map->height; y++) {
         free(map->tiles[y]);

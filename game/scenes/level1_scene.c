@@ -8,7 +8,7 @@
 #include "../entity.h"
 
 static TileMap map;
-static Entity player = { 5, 5, 1, 1, 'P' };
+static Entity player = { 5, 5, 1, 2, 'P' };
 
 // PROTOTIPOS
 void level1_init();
@@ -37,7 +37,7 @@ void level1_update() {
     if(key_down(KEY_D)) nextX++;
 
     // Verifica las colisiones con tiles de pared (#)
-    if(tilemap_is_walkable(&map, nextX, nextY)) {
+    if(tilemap_entity_is_walkable(&map, &player, nextX, nextY)) {
         player.x = nextX;
         player.y = nextY;
     }
