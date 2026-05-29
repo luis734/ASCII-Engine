@@ -1,8 +1,8 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include "../game/entity.h"
-#include "../game/tilemap.h"
+#include "../games/entity.h"
+#include "../games/tilemap.h"
 
 #define SCREEN_WIDTH 20
 #define SCREEN_HEIGHT 10

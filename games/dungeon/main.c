@@ -1,4 +1,4 @@
-#include "../engine/engine.h" // Imporamos el engine para que se ejecute
+#include "../../engine/engine.h" // Imporamos el engine para que se ejecute
 #include "scenes/level1_scene.h" // Importamos la escena principal, de aqui se movera a otras escenas.
 
 int main() {
